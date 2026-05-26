@@ -1,4 +1,3 @@
-
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
@@ -10,8 +9,7 @@ export default defineConfig({
 
   workers: 1,
 
-  reporter: 'html',
-
+reporter: [['html', { open: 'always' }]],
   use: {
 
     headless: false,
@@ -39,7 +37,10 @@ export default defineConfig({
     {
       name: 'authenticated',
 
-      testMatch: /update-profile\.spec\.js/,
+      testMatch: [
+      
+        /change-info\.spec\.js/,   // 👈 thêm vào đây
+      ],
 
       use: {
         ...devices['Desktop Chrome'],
