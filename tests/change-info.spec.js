@@ -14,12 +14,12 @@ test('TC01 - Cập nhật họ tên hợp lệ', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#fullname').clear();
-  await page.locator('#fullname').fill('Nguyễn Văn Duy');
+  await page.locator('#fullname').fill('Nguyễn Văn D');
   await page.getByRole('button', { name: 'THAY ĐỔI' }).click();
   await page.waitForLoadState('networkidle');
 
   await goToChangePage(page);
-  await expect(page.locator('#fullname')).toHaveValue('Nguyễn Văn Duy');
+  await expect(page.locator('#fullname')).toHaveValue('Nguyễn Văn D');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -44,7 +44,7 @@ test('TC03 - Cập nhật email hợp lệ (expect trang reload thành công)', 
   await goToChangePage(page);
 
   await page.locator('#email').clear();
-  await page.locator('#email').fill('duy3012@gmail.com');
+  await page.locator('#email').fill('duy30@gmail.com');
   await page.getByRole('button', { name: 'THAY ĐỔI' }).click();
   await page.waitForLoadState('networkidle');
 
@@ -55,7 +55,7 @@ test('TC03 - Cập nhật email hợp lệ (expect trang reload thành công)', 
 
   // Và giá trị phải được lưu
   await goToChangePage(page);
-  await expect(page.locator('#email')).toHaveValue('duy3012@gmail.com');
+  await expect(page.locator('#email')).toHaveValue('duy30@gmail.com');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

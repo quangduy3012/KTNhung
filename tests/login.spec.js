@@ -7,35 +7,35 @@ const loginTestCases = [
     name: 'TRỐNG EMAIL',
     email: '',
     pass: '30122004',
-    expectError: /email/i
+    expectError: /nhập.*email/i
   },
   {
     id: 'TC02',
     name: 'SAI ĐỊNH DẠNG EMAIL',
     email: 'duy_sai_dinh_dang@',
     pass: '30122004',
-    expectError: /email/i
+    expectError: /email không chính xác/i
   },
   {
     id: 'TC03',
     name: 'EMAIL <= 2 KÝ TỰ',
     email: 'a',
     pass: '30122004',
-    expectError: /email/i
+    expectError: /email không chính xác/i
   },
   {
     id: 'TC04',
     name: 'EMAIL CÓ KHOẢNG TRẮNG',
     email: 'duy 3012@gmail.com',
     pass: '30122004',
-    expectError: /email/i
+    expectError: /email không chính xác/i
   },
   {
     id: 'TC05',
     name: 'EMAIL KHÔNG TỒN TẠI',
     email: 'chua_dang_ky_123@gmail.com',
     pass: 'Duy30122004@',
-    expectError: /đăng nhập|tài khoản|sai/i
+    expectError: /(đăng nhập|tài khoản).*sai/i
   },
 
   // ── VALIDATION: MẬT KHẨU ────────────────────────────────────────────────
@@ -44,21 +44,21 @@ const loginTestCases = [
     name: 'TRỐNG MẬT KHẨU',
     email: 'quangduy@gmail.com',
     pass: '',
-    expectError: /mật khẩu|password/i
+    expectError: /nhập.*(mật khẩu|password)/i
   },
   {
     id: 'TC07',
     name: 'MẬT KHẨU <= 2 KÝ TỰ',
     email: 'quangduy@gmail.com',
     pass: '12',
-    expectError: /mật khẩu|password|đăng nhập|sai/i
+    expectError: /(mật khẩu|password|đăng nhập|).*sai/i
   },
   {
     id: 'TC08',
     name: 'SAI MẬT KHẨU',
     email: 'abcde@gmail.com',
     pass: 'matkhaushit123',
-    expectError: /mật khẩu|password|đăng nhập|sai/i
+    expectError: /(mật khẩu|password|đăng nhập|).*sai/i
   },
 
   // ── HAPPY PATH ───────────────────────────────────────────────────────────
@@ -102,8 +102,6 @@ for (const data of loginTestCases) {
       console.log(`❌ FAIL [${data.id} - ${data.name}]`);
       expect(passed, `
 ❌ FAIL [${data.id} - ${data.name}]
-   Email   : "${data.email}"
-   Pass    : "${data.pass}"
    Mong đợi: "${data.expectError}"
    Thực tế : "${dialogActualMessage || bodyText.trim().slice(0, 100)}"
       `).toBeTruthy();

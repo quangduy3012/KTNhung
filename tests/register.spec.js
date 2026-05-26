@@ -14,7 +14,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /email/i
+    expectError: /email.*không/i
   },
   {
     id: 'TC02',
@@ -26,7 +26,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /email/i
+    expectError: /nhập email/i
   },
   {
     id: 'TC03',
@@ -38,7 +38,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /email|tồn tại|đã được đăng ký/i
+    expectError: /email.*(tồn tại|đã được đăng ký)/i
   },
 
   // ── VALIDATION: SĐT ─────────────────────────────────────────────────────
@@ -52,7 +52,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /SĐT|điện thoại|phone/i
+    expectError: /nhập.*(SĐT|điện thoại|phone)/i
   },
   {
     id: 'TC05',
@@ -64,7 +64,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /SĐT|điện thoại|phone/i
+    expectError: /(SĐT|điện thoại|phone).*chưa chính xác/i
   },
   {
     id: 'TC06',
@@ -76,7 +76,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /SĐT|điện thoại|phone/i
+    expectError: /(SĐT|điện thoại|phone).*chưa chính xác/i
   },
 
   // ── VALIDATION: HỌ TÊN ──────────────────────────────────────────────────
@@ -90,7 +90,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /tên|name/i
+    expectError: /nhập.*(tên|name)/i
   },
   {
     id: 'TC08',
@@ -102,7 +102,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /tên|name/i
+    expectError: /(tên|name).*ngắn/i
   },
 
   // ── VALIDATION: MẬT KHẨU ────────────────────────────────────────────────
@@ -116,7 +116,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /mật khẩu|password/i
+    expectError: /nhập.*(mật khẩu|password)/i
   },
   {
     id: 'TC10',
@@ -128,7 +128,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /mật khẩu|password/i
+    expectError: /(mật khẩu|password).*yếu/i
   },
   {
     id: 'TC11',
@@ -140,7 +140,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /mật khẩu|password/i
+    expectError: /(mật khẩu|password).*yếu/i
   },
   {
     id: 'TC12',
@@ -152,7 +152,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /mật khẩu|password/i
+    expectError: /(mật khẩu|password).*yếu/i
   },
   {
     id: 'TC13',
@@ -165,7 +165,7 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /mật khẩu|password|không khớp/i
+    expectError: /(mật khẩu|password).*không trùng khớp/i
   },
 
   // ── VALIDATION: CÁC TRƯỜNG KHÁC ─────────────────────────────────────────
@@ -179,7 +179,7 @@ const testCases = [
     checkGender: false,
     address: 'Hà Nội',
     checkProvince: true,
-    expectError: /giới tính/i
+    expectError: /chọn.*giới tính/i
   },
   {
     id: 'TC15',
@@ -191,7 +191,7 @@ const testCases = [
     checkGender: true,
     address: '',
     checkProvince: true,
-    expectError: /địa chỉ/i
+    expectError: /nhập.*(địa chỉ)/i
   },
   {
     id: 'TC16',
@@ -203,12 +203,12 @@ const testCases = [
     checkGender: true,
     address: 'Hà Nội',
     checkProvince: false,
-    expectError: /tỉnh|quận|huyện/i
+    expectError: /chọn.*(tỉnh|quận|huyện)/i
   },
 ];
 
 for (const data of testCases) {
-  test(`${data.id} - ${data.name}`, async ({ page }) => {
+  test(`${data.id} - ${data.name}`, async ({ page }, testInfo) => {
 
     await page.goto('https://nguyencongpc.vn/dang-ky', { waitUntil: 'domcontentloaded' });
 
@@ -254,6 +254,12 @@ for (const data of testCases) {
     const errorText = dialogMsg || await page.locator('#js-contact-note').innerText().catch(() => '');
     const passed = data.expectError.test(errorText);
 
+    // Hiện mong đợi / thực tế trong Playwright report
+    testInfo.annotations.push(
+      { type: '🎯 Mong đợi', description: `${data.expectError}` },
+      { type: passed ? '✅ Thực tế (PASS)' : '❌ Thực tế (FAIL)', description: errorText.trim() || '""' },
+    );
+
     if (!passed) {
       console.log(`\n❌ FAIL [${data.id} - ${data.name}]`);
       console.log(`   Email      : "${data.email}"`);
@@ -271,7 +277,7 @@ for (const data of testCases) {
 }
 
 // ── TC17: HAPPY PATH - Đăng ký thành công ────────────────────────────────
-test('TC17 - Đăng ký thành công', async ({ page }) => {
+test('TC17 - Đăng ký thành công', async ({ page }, testInfo) => {
   const uniqueEmail = `test${Date.now()}@gmail.com`;
 
   await page.goto('https://nguyencongpc.vn/dang-ky', { waitUntil: 'domcontentloaded' });
@@ -305,9 +311,16 @@ test('TC17 - Đăng ký thành công', async ({ page }) => {
   const currentURL = page.url();
   const isRedirected = /taikhoan|thanh-cong|success/i.test(currentURL);
   const isSuccessMsg = /thành công|welcome|chào mừng/i.test(dialogMsg);
+  const passed = isRedirected || isSuccessMsg;
+
+  // Hiện mong đợi / thực tế trong Playwright report
+  testInfo.annotations.push(
+    { type: '🎯 Mong đợi', description: 'Redirect hoặc thông báo đăng ký thành công' },
+    { type: passed ? '✅ Thực tế (PASS)' : '❌ Thực tế (FAIL)', description: `URL: "${currentURL}" | Dialog: "${dialogMsg || '(không có)'}"` },
+  );
 
   expect(
-    isRedirected || isSuccessMsg,
+    passed,
     `❌ FAIL [TC17 - Đăng ký thành công] — URL: "${currentURL}" | Dialog: "${dialogMsg}"`
   ).toBeTruthy();
 });

@@ -16,7 +16,7 @@ reporter: [['html', { open: 'always' }]],
 
     // chạy chậm để nhìn
     launchOptions: {
-      slowMo: 1000,
+      slowMo:0,
     },
 
     baseURL: 'https://nguyencongpc.vn',
