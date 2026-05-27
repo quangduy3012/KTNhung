@@ -3,35 +3,35 @@ import { test, expect } from '@playwright/test';
 const loginTestCases = [
   // ── VALIDATION: EMAIL ────────────────────────────────────────────────────
   {
-    id: 'TC01',
+    id: 'DN01',
     name: 'TRỐNG EMAIL',
     email: '',
     pass: '30122004',
     expectError: /nhập.*email/i
   },
   {
-    id: 'TC02',
+    id: 'DN02',
     name: 'SAI ĐỊNH DẠNG EMAIL',
     email: 'duy_sai_dinh_dang@',
     pass: '30122004',
     expectError: /email không chính xác/i
   },
   {
-    id: 'TC03',
+    id: 'DN03',
     name: 'EMAIL <= 2 KÝ TỰ',
     email: 'a',
     pass: '30122004',
     expectError: /email không chính xác/i
   },
   {
-    id: 'TC04',
+    id: 'DN04',
     name: 'EMAIL CÓ KHOẢNG TRẮNG',
     email: 'duy 3012@gmail.com',
     pass: '30122004',
     expectError: /email không chính xác/i
   },
   {
-    id: 'TC05',
+    id: 'DN05',
     name: 'EMAIL KHÔNG TỒN TẠI',
     email: 'chua_dang_ky_123@gmail.com',
     pass: 'Duy30122004@',
@@ -40,21 +40,21 @@ const loginTestCases = [
 
   // ── VALIDATION: MẬT KHẨU ────────────────────────────────────────────────
   {
-    id: 'TC06',
+    id: 'DN06',
     name: 'TRỐNG MẬT KHẨU',
     email: 'quangduy@gmail.com',
     pass: '',
     expectError: /nhập.*(mật khẩu|password)/i
   },
   {
-    id: 'TC07',
+    id: 'DN07',
     name: 'MẬT KHẨU <= 2 KÝ TỰ',
     email: 'quangduy@gmail.com',
     pass: '12',
     expectError: /(mật khẩu|password|đăng nhập|).*sai/i
   },
   {
-    id: 'TC08',
+    id: 'DN08',
     name: 'SAI MẬT KHẨU',
     email: 'abcde@gmail.com',
     pass: 'matkhaushit123',
@@ -63,7 +63,7 @@ const loginTestCases = [
 
   // ── HAPPY PATH ───────────────────────────────────────────────────────────
   {
-    id: 'TC09',
+    id: 'DN09',
     name: 'ĐĂNG NHẬP THÀNH CÔNG',
     email: 'duy3012@gmail.com',
     pass: 'duy30122004',

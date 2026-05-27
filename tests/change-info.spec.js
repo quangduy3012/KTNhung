@@ -8,9 +8,9 @@ async function goToChangePage(page) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC01 – Cập nhật họ tên hợp lệ → trang reload, lưu thành công
+// CN01 – Cập nhật họ tên hợp lệ → trang reload, lưu thành công
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC01 - Cập nhật họ tên hợp lệ', async ({ page }) => {
+test('CN01 - Cập nhật họ tên hợp lệ', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#fullname').clear();
@@ -23,9 +23,9 @@ test('TC01 - Cập nhật họ tên hợp lệ', async ({ page }) => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC02 – Cập nhật họ tên để trống → phải có thông báo lỗi
+// CN02 – Cập nhật họ tên để trống → phải có thông báo lỗi
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC02 - Cập nhật họ tên để trống (expect thông báo lỗi)', async ({ page }) => {
+test('CN02 - Cập nhật họ tên để trống (expect thông báo lỗi)', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#fullname').clear();
@@ -37,10 +37,10 @@ test('TC02 - Cập nhật họ tên để trống (expect thông báo lỗi)', a
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC03 – Cập nhật email hợp lệ → kỳ vọng trang reload thành công
+// CN03 – Cập nhật email hợp lệ → kỳ vọng trang reload thành công
 //        THỰC TẾ: lỗi 500 → FAIL (bug)
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC03 - Cập nhật email hợp lệ (expect trang reload thành công)', async ({ page }) => {
+test('CN03 - Cập nhật email hợp lệ (expect trang reload thành công)', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#email').clear();
@@ -59,10 +59,10 @@ test('TC03 - Cập nhật email hợp lệ (expect trang reload thành công)', 
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC04 – Cập nhật email sai định dạng → kỳ vọng có thông báo lỗi /email/i
+// CN04 – Cập nhật email sai định dạng → kỳ vọng có thông báo lỗi /email/i
 //        THỰC TẾ: lỗi 500 → FAIL (bug)
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC04 - Cập nhật email sai định dạng (expect thông báo lỗi)', async ({ page }) => {
+test('CN04 - Cập nhật email sai định dạng (expect thông báo lỗi)', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#email').clear();
@@ -76,9 +76,9 @@ test('TC04 - Cập nhật email sai định dạng (expect thông báo lỗi)', 
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC05 – Cập nhật địa chỉ hợp lệ → trang reload, lưu thành công
+// CN05 – Cập nhật địa chỉ hợp lệ → trang reload, lưu thành công
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC05 - Cập nhật địa chỉ hợp lệ', async ({ page }) => {
+test('CN05 - Cập nhật địa chỉ hợp lệ', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#address').clear();
@@ -91,10 +91,10 @@ test('TC05 - Cập nhật địa chỉ hợp lệ', async ({ page }) => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC06 – Địa chỉ để trống → phải có thông báo lỗi
+// CN06 – Địa chỉ để trống → phải có thông báo lỗi
 //        THỰC TẾ: web vẫn lưu → FAIL (bug)
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC06 - Địa chỉ để trống (expect thông báo lỗi)', async ({ page }) => {
+test('CN06 - Địa chỉ để trống (expect thông báo lỗi)', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#address').clear();
@@ -106,9 +106,9 @@ test('TC06 - Địa chỉ để trống (expect thông báo lỗi)', async ({ pa
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC07 – Cập nhật tỉnh/thành phố hợp lệ
+// CN07 – Cập nhật tỉnh/thành phố hợp lệ
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC07 - Cập nhật tỉnh/thành phố hợp lệ', async ({ page }) => {
+test('CN07 - Cập nhật tỉnh/thành phố hợp lệ', async ({ page }) => {
   await goToChangePage(page);
 
   await page.getByRole('combobox').selectOption('4');
@@ -120,9 +120,9 @@ test('TC07 - Cập nhật tỉnh/thành phố hợp lệ', async ({ page }) => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC08 – Cập nhật SĐT di động hợp lệ
+// CN08 – Cập nhật SĐT di động hợp lệ
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC08 - Cập nhật SĐT di động hợp lệ', async ({ page }) => {
+test('CN08 - Cập nhật SĐT di động hợp lệ', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#mobile').clear();
@@ -135,10 +135,10 @@ test('TC08 - Cập nhật SĐT di động hợp lệ', async ({ page }) => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC09 – SĐT di động quá ngắn → phải có thông báo lỗi
+// CN09 – SĐT di động quá ngắn → phải có thông báo lỗi
 //        THỰC TẾ: web vẫn lưu → FAIL (bug)
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC09 - SĐT di động quá ngắn (expect thông báo lỗi)', async ({ page }) => {
+test('CN09 - SĐT di động quá ngắn (expect thông báo lỗi)', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#mobile').clear();
@@ -151,10 +151,10 @@ test('TC09 - SĐT di động quá ngắn (expect thông báo lỗi)', async ({ p
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC10 – SĐT di động có chữ → phải có thông báo lỗi
+// CN10 – SĐT di động có chữ → phải có thông báo lỗi
 //        THỰC TẾ: web vẫn lưu → FAIL (bug)
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC10 - SĐT di động có chữ (expect thông báo lỗi)', async ({ page }) => {
+test('CN10 - SĐT di động có chữ (expect thông báo lỗi)', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#mobile').clear();
@@ -167,9 +167,9 @@ test('TC10 - SĐT di động có chữ (expect thông báo lỗi)', async ({ pag
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC11 – Cập nhật SĐT cố định hợp lệ
+// CN11 – Cập nhật SĐT cố định hợp lệ
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC11 - Cập nhật SĐT cố định hợp lệ', async ({ page }) => {
+test('CN11 - Cập nhật SĐT cố định hợp lệ', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#telephone').clear();
@@ -182,10 +182,10 @@ test('TC11 - Cập nhật SĐT cố định hợp lệ', async ({ page }) => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC12 – SĐT cố định quá ngắn → phải có thông báo lỗi
+// CN12 – SĐT cố định quá ngắn → phải có thông báo lỗi
 //        THỰC TẾ: web vẫn lưu → FAIL (bug)
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC12 - SĐT cố định quá ngắn (expect thông báo lỗi)', async ({ page }) => {
+test('CN12 - SĐT cố định quá ngắn (expect thông báo lỗi)', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#telephone').clear();
@@ -198,10 +198,10 @@ test('TC12 - SĐT cố định quá ngắn (expect thông báo lỗi)', async ({
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC13 – SĐT cố định có chữ → phải có thông báo lỗi
+// CN13 – SĐT cố định có chữ → phải có thông báo lỗi
 //        THỰC TẾ: web vẫn lưu → FAIL (bug)
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC13 - SĐT cố định có chữ (expect thông báo lỗi)', async ({ page }) => {
+test('CN13 - SĐT cố định có chữ (expect thông báo lỗi)', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#telephone').clear();
@@ -214,9 +214,9 @@ test('TC13 - SĐT cố định có chữ (expect thông báo lỗi)', async ({ p
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TC14 – Cập nhật tất cả thông tin hợp lệ cùng lúc (không đổi email)
+// CN14 – Cập nhật tất cả thông tin hợp lệ cùng lúc (không đổi email)
 // ─────────────────────────────────────────────────────────────────────────────
-test('TC14 - Cập nhật tất cả thông tin hợp lệ cùng lúc', async ({ page }) => {
+test('CN14 - Cập nhật tất cả thông tin hợp lệ cùng lúc', async ({ page }) => {
   await goToChangePage(page);
 
   await page.locator('#fullname').fill('Nguyễn Văn Duy');

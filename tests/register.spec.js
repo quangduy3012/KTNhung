@@ -5,9 +5,9 @@ test.setTimeout(60000);
 const testCases = [
   // ── VALIDATION: EMAIL ────────────────────────────────────────────────────
   {
-    id: 'TC01',
+    id: 'DK01',
     name: 'Email sai format',
-    email: 'abc',
+    email: 'abcdef',
     phone: '0967246142',
     password: 'Duy30122004@',
     fullName: 'Quang Duy',
@@ -17,7 +17,7 @@ const testCases = [
     expectError: /email.*không/i
   },
   {
-    id: 'TC02',
+    id: 'DK02',
     name: 'Email để trống',
     email: '',
     phone: '0967246142',
@@ -29,7 +29,7 @@ const testCases = [
     expectError: /nhập email/i
   },
   {
-    id: 'TC03',
+    id: 'DK03',
     name: 'Email đã tồn tại',
     email: 'duy3012@gmail.com',
     phone: '0967246142',
@@ -43,8 +43,8 @@ const testCases = [
 
   // ── VALIDATION: SĐT ─────────────────────────────────────────────────────
   {
-    id: 'TC04',
-    name: 'SĐT để trống',
+    id: 'DK04',
+    name: 'Số di động để trống',
     email: `test${Date.now()}04@gmail.com`,
     phone: '',
     password: 'Duy30122004@',
@@ -55,8 +55,8 @@ const testCases = [
     expectError: /nhập.*(SĐT|điện thoại|phone)/i
   },
   {
-    id: 'TC05',
-    name: 'SĐT thiếu số',
+    id: 'DK05',
+    name: 'Số di động thiếu số',
     email: `test${Date.now()}05@gmail.com`,
     phone: '123',
     password: 'Duy30122004@',
@@ -67,8 +67,8 @@ const testCases = [
     expectError: /(SĐT|điện thoại|phone).*chưa chính xác/i
   },
   {
-    id: 'TC06',
-    name: 'SĐT chứa chữ',
+    id: 'DK06',
+    name: 'Số di động chứa chữ',
     email: `test${Date.now()}06@gmail.com`,
     phone: 'abcxyz',
     password: 'Duy30122004@',
@@ -81,7 +81,7 @@ const testCases = [
 
   // ── VALIDATION: HỌ TÊN ──────────────────────────────────────────────────
   {
-    id: 'TC07',
+    id: 'DK07',
     name: 'Họ tên để trống',
     email: `test${Date.now()}07@gmail.com`,
     phone: '0967246142',
@@ -93,7 +93,7 @@ const testCases = [
     expectError: /nhập.*(tên|name)/i
   },
   {
-    id: 'TC08',
+    id: 'DK08',
     name: 'Họ tên quá ngắn',
     email: `test${Date.now()}08@gmail.com`,
     phone: '0967246142',
@@ -107,7 +107,7 @@ const testCases = [
 
   // ── VALIDATION: MẬT KHẨU ────────────────────────────────────────────────
   {
-    id: 'TC09',
+    id: 'DK09',
     name: 'Mật khẩu để trống',
     email: `test${Date.now()}09@gmail.com`,
     phone: '0967246142',
@@ -119,7 +119,7 @@ const testCases = [
     expectError: /nhập.*(mật khẩu|password)/i
   },
   {
-    id: 'TC10',
+    id: 'DK10',
     name: 'Mật khẩu quá ngắn',
     email: `test${Date.now()}10@gmail.com`,
     phone: '0967246142',
@@ -131,7 +131,7 @@ const testCases = [
     expectError: /(mật khẩu|password).*yếu/i
   },
   {
-    id: 'TC11',
+    id: 'DK11',
     name: 'Mật khẩu không có ký tự đặc biệt',
     email: `test${Date.now()}11@gmail.com`,
     phone: '0967246142',
@@ -143,7 +143,7 @@ const testCases = [
     expectError: /(mật khẩu|password).*yếu/i
   },
   {
-    id: 'TC12',
+    id: 'DK12',
     name: 'Mật khẩu không có chữ hoa',
     email: `test${Date.now()}12@gmail.com`,
     phone: '0967246142',
@@ -155,8 +155,8 @@ const testCases = [
     expectError: /(mật khẩu|password).*yếu/i
   },
   {
-    id: 'TC13',
-    name: 'Mật khẩu xác nhận không khớp',
+    id: 'DK13',
+    name: 'Nhập lại Mật khẩu xác nhận không khớp',
     email: `test${Date.now()}13@gmail.com`,
     phone: '0967246142',
     password: 'Duy30122004@',
@@ -170,7 +170,7 @@ const testCases = [
 
   // ── VALIDATION: CÁC TRƯỜNG KHÁC ─────────────────────────────────────────
   {
-    id: 'TC14',
+    id: 'DK14',
     name: 'Không chọn giới tính',
     email: `test${Date.now()}14@gmail.com`,
     phone: '0967246142',
@@ -182,7 +182,7 @@ const testCases = [
     expectError: /chọn.*giới tính/i
   },
   {
-    id: 'TC15',
+    id: 'DK15',
     name: 'Địa chỉ để trống',
     email: `test${Date.now()}15@gmail.com`,
     phone: '0967246142',
@@ -194,8 +194,8 @@ const testCases = [
     expectError: /nhập.*(địa chỉ)/i
   },
   {
-    id: 'TC16',
-    name: 'Không chọn tỉnh và quận',
+    id: 'DK16',
+    name: 'Không chọn Tỉnh/thành phố và Quận/huyện',
     email: `test${Date.now()}16@gmail.com`,
     phone: '0967246142',
     password: 'Duy30122004@',
@@ -276,8 +276,8 @@ for (const data of testCases) {
   });
 }
 
-// ── TC17: HAPPY PATH - Đăng ký thành công ────────────────────────────────
-test('TC17 - Đăng ký thành công', async ({ page }, testInfo) => {
+// ── DK17: HAPPY PATH - Đăng ký thành công ────────────────────────────────
+test('DK17 - Đăng ký thành công', async ({ page }, testInfo) => {
   const uniqueEmail = `test${Date.now()}@gmail.com`;
 
   await page.goto('https://nguyencongpc.vn/dang-ky', { waitUntil: 'domcontentloaded' });
@@ -321,6 +321,6 @@ test('TC17 - Đăng ký thành công', async ({ page }, testInfo) => {
 
   expect(
     passed,
-    `❌ FAIL [TC17 - Đăng ký thành công] — URL: "${currentURL}" | Dialog: "${dialogMsg}"`
+    `❌ FAIL [DK17 - Đăng ký thành công] — URL: "${currentURL}" | Dialog: "${dialogMsg}"`
   ).toBeTruthy();
 });
